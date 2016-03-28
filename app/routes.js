@@ -1,4 +1,4 @@
-import React, { Navigator, TabBarIOS } from 'react-native';
+import React, { Navigator } from 'react-native';
 import { connect } from 'react-redux';
 import RNRF, {
   Route, Schema,

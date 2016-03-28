@@ -2,8 +2,8 @@ import React, {
   View,
   ScrollView,
   Dimensions,
-  TabBarIOS,
 } from 'react-native';
+import Tabbar from './Tabbar';
 import PostListItem from '../components/PostListItem';
 import SearchPostBar from '../components/SearchPostBar';
 import { connect } from 'react-redux';
@@ -45,6 +45,7 @@ function PostList(props) {
     <View style={styles.wrapper}>
       <SearchPostBar />
       {bodyView}
+      <Tabbar />
     </View>
   );
 }

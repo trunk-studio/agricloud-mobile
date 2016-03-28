@@ -29,6 +29,14 @@ export default function SearchPostBar(props) {
   );
 }
 
+SearchPostBar.propTypes = {
+  requestSearchPost: React.PropTypes.func,
+};
+
+SearchPostBar.defaultProps = {
+  requestSearchPost: null,
+};
+
 function _injectPropsFromStore() {
   return {
   };
@@ -36,14 +44,6 @@ function _injectPropsFromStore() {
 
 const _injectPropsFormActions = {
   requestSearchPost,
-};
-
-SearchPostBar.propTypes = {
-  requestSearchPost: React.PropTypes.func,
-};
-
-SearchPostBar.defaultProps = {
-  requestSearchPost: null,
 };
 
 export default connect(_injectPropsFromStore, _injectPropsFormActions)(SearchPostBar);

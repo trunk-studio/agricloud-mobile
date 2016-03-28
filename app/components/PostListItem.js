@@ -5,7 +5,6 @@ import React, {
   TouchableOpacity,
   Image,
 } from 'react-native';
-
 import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
