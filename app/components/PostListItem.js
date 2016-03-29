@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
 export default function PostListItem(props) {
   function pressHandle() {
-    Actions.PostDetail({
+    Actions.postDetail({
       index: props.index,
     });
   }

@@ -1,7 +1,6 @@
 export const REQUEST_SEARCH_POST = 'REQUEST_SEARCH_POST';
 export const RECEIVED_SEARCH_POST = 'RECEIVED_SEARCH_POST';
 
-
 function receivedSearchPost(postList) {
   return {
     type: RECEIVED_SEARCH_POST,
