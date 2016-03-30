@@ -39,6 +39,7 @@ const styles = React.StyleSheet.create({
     paddingBottom: 30,
     fontSize: 16,
     color: 'rgb(40, 40, 40)',
+    backgroundColor: 'white',
     lineHeight: 30,
     shadowOpacity: 1,
     shadowColor: 'rgba(147, 147, 147, 0.6)',
