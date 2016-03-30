@@ -1,6 +1,5 @@
 import React, {
   ScrollView,
-  View,
   Image,
   Text,
 } from 'react-native';

@@ -26,18 +26,15 @@ const styles = StyleSheet.create({
     },
   },
   titles: {
-    fontWeight: '600',
+    fontWeight: '400',
     fontSize: 16,
+    color: '#333',
     lineHeight: 22,
   },
   commentBody: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-  },
-  commentText: {
-    flex: 1,
-    flexDirection: 'row',
   },
   avatar: {
     borderRadius: 3,
