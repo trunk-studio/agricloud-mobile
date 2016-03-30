@@ -11,9 +11,8 @@ const styles = StyleSheet.create({
   commentContent: {
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 3,
-    marginBottom: 3,
-    padding: 15,
+    marginTop: 10,
+    marginBottom: 10,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -27,9 +26,11 @@ const styles = StyleSheet.create({
   },
   titles: {
     fontWeight: '400',
-    fontSize: 16,
+    fontSize: 20,
     color: '#333',
-    lineHeight: 22,
+    lineHeight: 70,
+    letterSpacing: 1,
+    textAlign: 'center',
   },
   commentBody: {
     flex: 1,
@@ -38,16 +39,17 @@ const styles = StyleSheet.create({
   },
   avatar: {
     borderRadius: 3,
-    width: 120,
-    height: 90,
+    width: 200,
+    height: 120,
     marginRight: 10,
   },
 });
 
-export default function PostListItem(props) {
+export default function CateItem(props) {
   function pressHandle() {
-    Actions.postDetail({
+    Actions.postList({
       index: props.index,
+      title: props.title,
     });
   }
   return (
@@ -64,13 +66,13 @@ export default function PostListItem(props) {
   );
 }
 
-PostListItem.propTypes = {
+CateItem.propTypes = {
   title: React.PropTypes.string,
-  uri: React.PropTypes.string,
   index: React.PropTypes.number,
+  uri: React.PropTypes.string,
 };
 
-PostListItem.defaultProps = {
+CateItem.defaultProps = {
   title: '新聞標題',
   uri: 'https://unsplash.it/300/400/?random',
 };

@@ -9,6 +9,8 @@ const Router = connect()(RNRF.Router);
 
 // View
 import TabIcon from './components/TabIcon';
+import Dashboard from './containers/Dashboard';
+import Catogory from './containers/Catogory';
 import PostList from './containers/PostList';
 import PostDetail from './containers/PostDetail';
 
@@ -28,14 +30,14 @@ export default function AppRoutes() {
         >
           <Route name="tabFavs" schema="tab" title="收藏" iconName="heart">
             <Router>
-              <Route name="postList" component={PostList} title="Agricloud Mobile" />
+              <Route name="Catogory" component={Catogory} title="Agricloud Mobile" />
+              <Route name="postList" component={PostList} />
               <Route name="postDetail" component={PostDetail} title="新聞內頁" />
             </Router>
           </Route>
           <Route name="tabDiscover" schema="tab" title="探索" iconName="rocket">
             <Router>
-              <Route name="postList" component={PostList} title="Agricloud Mobile" />
-              <Route name="postDetail" component={PostDetail} title="新聞內頁" />
+              <Route name="dashboard" component={Dashboard} title="Dashboard" />
             </Router>
           </Route>
           <Route name="tabInfo" schema="tab" title="最新資訊" iconName="newspaper-o">

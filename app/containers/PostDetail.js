@@ -1,5 +1,5 @@
 import React, {
-  View,
+  ScrollView,
   Image,
   Text,
 } from 'react-native';
@@ -10,12 +10,42 @@ const windowSize = Dimensions.get('window');
 const styles = React.StyleSheet.create({
   wrapper: {
     paddingTop: 65,
+    backgroundColor: 'rgb(240, 240, 240)',
+  },
+  hr: {
+    borderColor: 'rgba(185, 190, 183, 0.53)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    marginLeft: 15,
+    marginRight: 15,
   },
   newsTitle: {
     fontSize: 20,
+    paddingLeft: 27,
+    paddingRight: 27,
+    paddingTop: 10,
+    paddingBottom: 10,
+    lineHeight: 30,
   },
   newsContent: {
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 20,
+    marginBottom: 100,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 15,
+    paddingBottom: 30,
     fontSize: 16,
+    color: 'rgb(40, 40, 40)',
+    backgroundColor: 'white',
+    lineHeight: 30,
+    shadowOpacity: 1,
+    shadowColor: 'rgba(147, 147, 147, 0.6)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   itemImg: {
     width: windowSize.width,
@@ -25,7 +55,11 @@ const styles = React.StyleSheet.create({
 
 function PostDetail(props) {
   return (
-    <View style={styles.wrapper}>
+    <ScrollView
+      style={styles.wrapper}
+      keyscrollEventThrottle={200}
+      automaticallyAdjustContentInsets={false}
+    >
       <Image source={{ uri: props.uri }} style={ styles.itemImg } />
       <Text style={ styles.newsTitle }>
         {props.postList[props.index]._source.title}
@@ -33,7 +67,7 @@ function PostDetail(props) {
       <Text style={ styles.newsContent }>
         {props.postList[props.index]._source.content}
       </Text>
-    </View>
+    </ScrollView>
   );
 }
 
