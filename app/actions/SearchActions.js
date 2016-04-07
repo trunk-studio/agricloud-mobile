@@ -27,7 +27,7 @@ export async function requestSearchPost(mIndex) {
   // const param = paramArray.join('&');
   // const searchApi = `http://localhost:1337/rest/post/search/${keyword}?${param}`;
   // const postList = await fetch(searchApi).then(response => response.json());
-  const searchApi = `http://data.coa.gov.tw/Service/OpenData/DataFileService.aspx?UnitId=061&$top=20&$filter=month+like+${mIndex}`;
+  const searchApi = `http://data.coa.gov.tw/Service/OpenData/DataFileService.aspx?UnitId=061&$top=10&$filter=month+like+${mIndex}`;
   const postList = await fetch(searchApi).then(response => response.json());
   console.log('month->', mIndex);
   console.log('searchApi->', searchApi);

@@ -25,10 +25,16 @@ export default function ScrollList(props) {
       );
     });
   } else {
-    listContainer.push(<Text style={[{ textAlign: 'center' }]} key={0}>沒有資料囉！</Text>);
+    listContainer.push(
+      <Text style={[{ textAlign: 'center' }, { marginTop: 10 }]} key={0}>沒有資料囉！</Text>
+    );
   }
   return (
-    <ScrollView keyscrollEventThrottle={200} automaticallyAdjustContentInsets={false}>
+    <ScrollView
+      removeClippedSubviews
+      keyscrollEventThrottle={200}
+      automaticallyAdjustContentInsets={false}
+    >
       {listContainer}
     </ScrollView>
   );
