@@ -9,14 +9,14 @@ const Router = connect()(RNRF.Router);
 
 // View
 import TabIcon from './components/TabIcon';
+import PostDetail from './containers/PostDetail';
 import Dashboard from './containers/Dashboard';
 import Catogory from './containers/Catogory';
 import PostList from './containers/PostList';
-import PostDetail from './containers/PostDetail';
 
 export default function AppRoutes() {
   return (
-    <Router name="root">
+    <Router name="root" leftTitle="Back">
       <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
       <Schema name="tab" type="switch" icon={TabIcon} />
       <Route hideNavBar={1} name="tabbar">
@@ -28,28 +28,21 @@ export default function AppRoutes() {
             backgroundColor: 'white',
           }}
         >
-          <Route name="tabFavs" schema="tab" title="收藏" iconName="heart">
+          <Route name="tabMonth" schema="tab" title="月份導覽" iconName="rocket">
             <Router>
-              <Route name="Catogory" component={Catogory} title="Agricloud Mobile" />
+              <Route name="catogory" component={Catogory} title="月份導覽" />
               <Route name="postList" component={PostList} />
               <Route name="postDetail" component={PostDetail} title="新聞內頁" />
             </Router>
           </Route>
-          <Route name="tabDiscover" schema="tab" title="探索" iconName="rocket">
+          <Route name="tabDashboard" hideNavBar schema="tab" title="首頁" iconName="home" initial>
             <Router>
               <Route name="dashboard" component={Dashboard} title="Dashboard" />
             </Router>
           </Route>
-          <Route name="tabInfo" schema="tab" title="最新資訊" iconName="newspaper-o">
+          <Route name="tabList" schema="tab" title="蔬果列表" iconName="newspaper-o">
             <Router>
-              <Route name="postList" component={PostList} title="Agricloud Mobile" />
-              <Route name="postDetail" component={PostDetail} title="新聞內頁" />
-            </Router>
-          </Route>
-          <Route name="tabContact" schema="tab" title="聯絡我們" iconName="mobile">
-            <Router>
-              <Route name="postList" component={PostList} title="Agricloud Mobile" />
-              <Route name="postDetail" component={PostDetail} title="新聞內頁" />
+              <Route name="dashboard" component={Dashboard} title="蔬果列表" />
             </Router>
           </Route>
         </Router>

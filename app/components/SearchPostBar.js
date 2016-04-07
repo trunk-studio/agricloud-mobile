@@ -1,9 +1,5 @@
 import React, { StyleSheet } from 'react-native';
 import SearchBar from 'react-native-search-bar';
-import { connect } from 'react-redux';
-import {
-  requestSearchPost,
-} from '../actions/SearchPostActions';
 
 const styles = StyleSheet.create({
   searchBar: {
@@ -14,11 +10,8 @@ const styles = StyleSheet.create({
 
 export default function SearchPostBar(props) {
   function _onChangeText(e) {
-    if (e.length > 0) {
-      props.requestSearchPost(e, '20km', null);
-    }
+    props.onChange(e);
   }
-
   return (
     <SearchBar placeholder={'搜尋'}
       style={styles.searchBar}
@@ -30,20 +23,9 @@ export default function SearchPostBar(props) {
 }
 
 SearchPostBar.propTypes = {
-  requestSearchPost: React.PropTypes.func,
+  onChange: React.PropTypes.func,
 };
 
 SearchPostBar.defaultProps = {
-  requestSearchPost: null,
+  onChange: null,
 };
-
-function _injectPropsFromStore() {
-  return {
-  };
-}
-
-const _injectPropsFormActions = {
-  requestSearchPost,
-};
-
-export default connect(_injectPropsFromStore, _injectPropsFormActions)(SearchPostBar);

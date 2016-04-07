@@ -5,7 +5,6 @@ import React, {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   commentContent: {
@@ -44,33 +43,45 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function PostListItem(props) {
-  function pressHandle() {
-    Actions.postDetail({
+export default function ListItem(props) {
+  function onItemPress() {
+    props.onItemPress({
       index: props.index,
+      type: props.type,
+      month: props.month,
+      crop: props.crop,
+      variety: props.variety,
+      county: props.county,
+      town: props.town,
+      uri: props.uri,
     });
   }
   return (
-    <TouchableOpacity underlayColor={"#f3f3f3"} onPress={pressHandle}>
+    <TouchableOpacity underlayColor={"#f3f3f3"} onPress={onItemPress}>
       <View style={styles.commentContent}>
         <Image source={{ uri: props.uri }} style={ styles.avatar } />
         <View style={styles.commentBody}>
-          <Text style={styles.titles}>
-            {props.title}
-          </Text>
+          <Text style={styles.titles}>{props.crop}</Text>
+          <Text style={styles.titles}>{props.variety}</Text>
+          <Text style={styles.titles}>{props.county} {props.town}</Text>
         </View>
       </View>
     </TouchableOpacity>
   );
 }
 
-PostListItem.propTypes = {
-  title: React.PropTypes.string,
-  uri: React.PropTypes.string,
+ListItem.propTypes = {
   index: React.PropTypes.number,
+  uri: React.PropTypes.string,
+  type: React.PropTypes.string,
+  month: React.PropTypes.string,
+  crop: React.PropTypes.string,
+  variety: React.PropTypes.string,
+  county: React.PropTypes.string,
+  town: React.PropTypes.string,
+  onItemPress: React.PropTypes.func,
 };
 
-PostListItem.defaultProps = {
-  title: '新聞標題',
-  uri: 'https://unsplash.it/300/400/?random',
+ListItem.defaultProps = {
+  uri: 'https://unsplash.it/150/100/?random',
 };

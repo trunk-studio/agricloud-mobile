@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 20,
     color: '#333',
-    lineHeight: 70,
+    lineHeight: 50,
     letterSpacing: 1,
     textAlign: 'center',
   },
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   avatar: {
     borderRadius: 3,
     width: 200,
-    height: 120,
+    height: 80,
     marginRight: 10,
   },
 });
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 export default function CateItem(props) {
   function pressHandle() {
     Actions.postList({
-      index: props.index,
+      mIndex: props.mIndex,
       title: props.title,
     });
   }
@@ -68,11 +68,11 @@ export default function CateItem(props) {
 
 CateItem.propTypes = {
   title: React.PropTypes.string,
-  index: React.PropTypes.number,
+  mIndex: React.PropTypes.number,
   uri: React.PropTypes.string,
 };
 
 CateItem.defaultProps = {
-  title: '新聞標題',
+  title: '標題',
   uri: 'https://unsplash.it/300/400/?random',
 };

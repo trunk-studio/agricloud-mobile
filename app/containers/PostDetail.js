@@ -3,6 +3,7 @@ import React, {
   Image,
   Text,
 } from 'react-native';
+import { requestSearchPost } from '../actions/SearchActions';
 import { connect } from 'react-redux';
 import Dimensions from 'Dimensions';
 
@@ -61,20 +62,21 @@ function PostDetail(props) {
       automaticallyAdjustContentInsets={false}
     >
       <Image source={{ uri: props.uri }} style={ styles.itemImg } />
-      <Text style={ styles.newsTitle }>
-        {props.postList[props.index]._source.title}
-      </Text>
-      <Text style={ styles.newsContent }>
-        {props.postList[props.index]._source.content}
-      </Text>
+      <Text style={ styles.newsTitle }>{props.crop}</Text>
+      <Text style={ styles.newsContent }>{props.variety}</Text>
     </ScrollView>
   );
 }
 
 PostDetail.propTypes = {
-  postList: React.PropTypes.array,
-  uri: React.PropTypes.string,
   index: React.PropTypes.number,
+  uri: React.PropTypes.string,
+  itemType: React.PropTypes.string,
+  month: React.PropTypes.string,
+  crop: React.PropTypes.string,
+  variety: React.PropTypes.string,
+  county: React.PropTypes.string,
+  town: React.PropTypes.string,
 };
 
 PostDetail.defaultProps = {
@@ -83,11 +85,12 @@ PostDetail.defaultProps = {
 
 function _injectPropsFromStore(state) {
   return {
-    postList: state.search.postList,
+    listData: state.search.postList,
   };
 }
 
 const _injectPropsFormActions = {
+  requestSearchPost,
 };
 
 export default connect(_injectPropsFromStore, _injectPropsFormActions)(PostDetail);

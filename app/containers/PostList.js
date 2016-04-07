@@ -1,14 +1,12 @@
 import React, {
   View,
-  ScrollView,
   Dimensions,
 } from 'react-native';
-import PostListItem from '../components/PostListItem';
+import ScrollList from '../components/ScrollList';
 import SearchPostBar from '../components/SearchPostBar';
+import { requestSearchPost } from '../actions/SearchActions';
 import { connect } from 'react-redux';
-import {
-  requestSearchPost,
-} from '../actions/SearchPostActions';
+import { Actions } from 'react-native-router-flux';
 
 const windowSize = Dimensions.get('window');
 const styles = React.StyleSheet.create({
@@ -20,45 +18,49 @@ const styles = React.StyleSheet.create({
 });
 
 function PostList(props) {
-  const { postList } = props;
-  const bodyView = [];
-  const postListContainer = [];
-  if (postList.length > 0) {
-    postList.forEach((post, i) => {
-      postListContainer.push(
-        <PostListItem
-          key={i}
-          index={i}
-          title={post._source.title}
-          uri={post._source.uri}
-        />
-      );
+  const { listData, mIndex } = props;
+  props.requestSearchPost(mIndex);
+  function onChange(e) {
+    // if (e.length > 0) {
+    //   props.requestSearchPost(mIndex);
+    // }
+  }
+  function onListItemPress(detail) {
+    Actions.postDetail({
+      itemType: detail.type,
+      month: detail.month,
+      crop: detail.crop,
+      variety: detail.variety,
+      county: detail.county,
+      town: detail.town,
+      uri: detail.uri,
     });
-    bodyView.push(
-      <ScrollView key={0} keyscrollEventThrottle={200} automaticallyAdjustContentInsets={false}>
-        {postListContainer}
-      </ScrollView>
-    );
   }
   return (
-    <View style={styles.wrapper}>
-      <SearchPostBar />
-      {bodyView}
+    <View style={styles.wrapper} onLayout={props.requestSearchPost}>
+      <SearchPostBar onChange={onChange} />
+      <ScrollList listData={listData} onItemPress={onListItemPress} />
     </View>
   );
 }
 
 PostList.propTypes = {
-  postList: React.PropTypes.array,
+  listData: React.PropTypes.array,
+  mIndex: React.PropTypes.number,
+  onChange: React.PropTypes.func,
+  requestSearchPost: React.PropTypes.func,
 };
 
 PostList.defaultProps = {
-  postList: [],
+  listData: [],
+  mIndex: 1,
+  onChange: null,
+  requestSearchPost: null,
 };
 
 function _injectPropsFromStore(state) {
   return {
-    postList: state.search.postList,
+    listData: state.search.postList,
   };
 }
 
