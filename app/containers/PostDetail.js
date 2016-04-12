@@ -1,6 +1,8 @@
 import React, {
+  StyleSheet,
   ScrollView,
   Image,
+  View,
   Text,
 } from 'react-native';
 import { requestSearchPost } from '../actions/SearchActions';
@@ -8,7 +10,7 @@ import { connect } from 'react-redux';
 import Dimensions from 'Dimensions';
 
 const windowSize = Dimensions.get('window');
-const styles = React.StyleSheet.create({
+const styles = StyleSheet.create({
   wrapper: {
     paddingTop: 65,
     backgroundColor: 'rgb(240, 240, 240)',
@@ -20,7 +22,7 @@ const styles = React.StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
   },
-  newsTitle: {
+  title: {
     fontSize: 20,
     paddingLeft: 27,
     paddingRight: 27,
@@ -28,7 +30,7 @@ const styles = React.StyleSheet.create({
     paddingBottom: 10,
     lineHeight: 30,
   },
-  newsContent: {
+  container: {
     marginLeft: 25,
     marginRight: 25,
     marginTop: 20,
@@ -37,16 +39,18 @@ const styles = React.StyleSheet.create({
     paddingRight: 20,
     paddingTop: 15,
     paddingBottom: 30,
-    fontSize: 16,
-    color: 'rgb(40, 40, 40)',
     backgroundColor: 'white',
-    lineHeight: 30,
     shadowOpacity: 1,
     shadowColor: 'rgba(147, 147, 147, 0.6)',
     shadowOffset: {
       width: 0,
       height: 0,
     },
+  },
+  content: {
+    fontSize: 16,
+    color: 'rgb(40, 40, 40)',
+    lineHeight: 30,
   },
   itemImg: {
     width: windowSize.width,
@@ -62,8 +66,13 @@ function PostDetail(props) {
       automaticallyAdjustContentInsets={false}
     >
       <Image source={{ uri: props.uri }} style={ styles.itemImg } />
-      <Text style={ styles.newsTitle }>{props.crop}</Text>
-      <Text style={ styles.newsContent }>{props.variety}</Text>
+      <Text style={ styles.title }>{props.title}</Text>
+      <View style={ styles.container }>
+        <Text style={ styles.content }>類型：{props.itemType}</Text>
+        <Text style={ styles.content }>產季：{props.month}</Text>
+        <Text style={ styles.content }>品種：{props.variety}</Text>
+        <Text style={ styles.content }>產地：{props.county}</Text>
+      </View>
     </ScrollView>
   );
 }
@@ -72,15 +81,14 @@ PostDetail.propTypes = {
   index: React.PropTypes.number,
   uri: React.PropTypes.string,
   itemType: React.PropTypes.string,
-  month: React.PropTypes.string,
-  crop: React.PropTypes.string,
-  variety: React.PropTypes.string,
-  county: React.PropTypes.string,
-  town: React.PropTypes.string,
+  month: React.PropTypes.array,
+  title: React.PropTypes.string,
+  variety: React.PropTypes.array,
+  county: React.PropTypes.array,
 };
 
 PostDetail.defaultProps = {
-  uri: 'https://images.unsplash.com/photo-1453053507108-9f5456eb481f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=e0d75a1d1e2605e4c9f9302de0679508',
+  uri: 'https://images.unsplash.com/photo-1437750769465-301382cdf094?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=81fddd087f6ab2460e326af2413dc9fd',
 };
 
 function _injectPropsFromStore(state) {

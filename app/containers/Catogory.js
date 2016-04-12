@@ -9,6 +9,7 @@ const styles = React.StyleSheet.create({
   wrapper: {
     backgroundColor: 'rgb(240, 240, 240)',
     paddingTop: 65,
+    marginBottom: 50,
     height: windowSize.height,
   },
 });
