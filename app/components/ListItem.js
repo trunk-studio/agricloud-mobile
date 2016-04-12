@@ -52,7 +52,6 @@ export default function ListItem(props) {
       crop: props.crop,
       variety: props.variety,
       county: props.county,
-      town: props.town,
       uri: props.uri,
     });
   }
@@ -63,7 +62,7 @@ export default function ListItem(props) {
         <View style={styles.commentBody}>
           <Text style={styles.titles}>{props.crop}</Text>
           <Text style={styles.titles}>{props.variety}</Text>
-          <Text style={styles.titles}>{props.county} {props.town}</Text>
+          <Text style={styles.titles}>{props.county}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -74,11 +73,10 @@ ListItem.propTypes = {
   index: React.PropTypes.number,
   uri: React.PropTypes.string,
   type: React.PropTypes.string,
-  month: React.PropTypes.string,
+  month: React.PropTypes.array,
   crop: React.PropTypes.string,
-  variety: React.PropTypes.string,
-  county: React.PropTypes.string,
-  town: React.PropTypes.string,
+  variety: React.PropTypes.array,
+  county: React.PropTypes.array,
   onItemPress: React.PropTypes.func,
 };
 
