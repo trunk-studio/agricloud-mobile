@@ -28,21 +28,26 @@ export default function AppRoutes() {
             backgroundColor: 'white',
           }}
         >
-          <Route name="tabMonth" schema="tab" title="月份導覽" iconName="rocket">
-            <Router>
-              <Route name="catogory" component={Catogory} title="月份導覽" />
-              <Route name="postList" component={PostList} />
-              <Route name="postDetail" component={PostDetail} title="新聞內頁" />
-            </Router>
-          </Route>
           <Route name="tabDashboard" hideNavBar schema="tab" title="首頁" iconName="home" initial>
             <Router>
               <Route name="dashboard" component={Dashboard} title="Dashboard" />
             </Router>
           </Route>
-          <Route name="tabList" schema="tab" title="蔬果列表" iconName="newspaper-o">
+          <Route name="tabMonth" schema="tab" title="月份導覽" iconName="rocket">
             <Router>
-              <Route name="dashboard" component={Dashboard} title="蔬果列表" />
+              <Route name="catogory" component={Catogory} title="月份導覽" />
+              <Route name="postList" component={PostList} />
+              <Route name="postDetail" component={PostDetail} />
+            </Router>
+          </Route>
+          <Route name="tabNews" schema="tab" title="最新資訊" iconName="newspaper-o">
+            <Router>
+              <Route name="dashboard" component={Dashboard} title="最新資訊" />
+            </Router>
+          </Route>
+          <Route name="tabAbout" schema="tab" title="關於我們" iconName="user">
+            <Router>
+              <Route name="dashboard" component={Dashboard} title="關於我們" />
             </Router>
           </Route>
         </Router>
