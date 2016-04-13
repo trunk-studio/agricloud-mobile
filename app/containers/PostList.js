@@ -1,4 +1,6 @@
 import React, {
+  Component,
+  StyleSheet,
   View,
   Dimensions,
 } from 'react-native';
@@ -9,7 +11,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 const windowSize = Dimensions.get('window');
-const styles = React.StyleSheet.create({
+const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: 'rgb(240, 240, 240)',
     paddingTop: 65,
@@ -17,31 +19,57 @@ const styles = React.StyleSheet.create({
   },
 });
 
-function PostList(props) {
-  const { listData, mIndex } = props;
-  props.requestSearchPost(mIndex);
-  function onChange(e) {
-    // if (e.length > 0) {
-    //   props.requestSearchPost(mIndex);
-    // }
+export default class PostList extends Component {
+  constructor(props) {
+    super(props);
   }
-  function onListItemPress(detail) {
-    Actions.postDetail({
-      itemType: detail.type,
-      month: detail.month,
-      crop: detail.crop,
-      variety: detail.variety,
-      county: detail.county,
-      town: detail.town,
-      uri: detail.uri,
-    });
+  // if (listData.length > 0) {
+  //   listData.forEach((post, i) => {
+  //     listContainer.push(
+  //       <ListItem
+  //         key={i}
+  //         index={i}
+  //         type={post.type}
+  //         month={post.month}
+  //         crop={post.title}
+  //         variety={post.variety}
+  //         county={post.county}
+  //         onItemPress={props.onItemPress}
+  //       />
+  //     );
+  //   });
+  // } else {
+  //   listContainer.push(
+  //     <Text style={styles.defaultTxt} key={0}>沒有資料囉！</Text>
+  //   );
+  // }
+  componentWillMount() {
+    this.props.requestSearchPost(this.props.mIndex);
   }
-  return (
-    <View style={styles.wrapper} onLayout={props.requestSearchPost}>
-      <SearchPostBar onChange={onChange} />
-      <ScrollList listData={listData} onItemPress={onListItemPress} />
-    </View>
-  );
+  render() {
+    const { listData, mIndex } = this.props;
+    function onChange(e) {
+      if (e.length > 0) {
+        requestSearchPost(mIndex);
+      }
+    }
+    function onListItemPress(detail) {
+      Actions.postDetail({
+        itemType: detail.type,
+        urlKey: detail.urlKey,
+        month: detail.month,
+        title: detail.crop,
+        variety: detail.variety,
+        county: detail.county,
+      });
+    }
+    return (
+      <View style={styles.wrapper}>
+        <SearchPostBar onChange={onChange} />
+        <ScrollList listData={listData} onItemPress={onListItemPress} />
+      </View>
+    );
+  }
 }
 
 PostList.propTypes = {

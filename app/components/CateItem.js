@@ -1,5 +1,6 @@
 import React, {
   StyleSheet,
+  PixelRatio,
   View,
   Text,
   TouchableOpacity,
@@ -7,6 +8,7 @@ import React, {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+const PIXEL_RATIO = PixelRatio.get();
 const styles = StyleSheet.create({
   commentContent: {
     marginLeft: 20,
@@ -28,19 +30,23 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 20,
     color: '#333',
-    lineHeight: 50,
-    letterSpacing: 1,
-    textAlign: 'center',
+    // letterSpacing: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   commentBody: {
-    flex: 1,
+    flex: 10,
     flexDirection: 'column',
+    height: 30 * PIXEL_RATIO,
+    alignItems: 'center',
     justifyContent: 'center',
   },
   avatar: {
     borderRadius: 3,
-    width: 200,
-    height: 80,
+    // width: windowSize.width * 0.4,
+    flex: 9,
+    flexDirection: 'column',
+    height: 30 * PIXEL_RATIO,
     marginRight: 10,
   },
 });

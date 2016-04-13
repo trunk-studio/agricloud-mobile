@@ -1,8 +1,20 @@
 import React, {
+  StyleSheet,
   ScrollView,
   Text,
 } from 'react-native';
 import ListItem from './ListItem';
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 50,
+  },
+  defaultTxt: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 20,
+  },
+});
 
 export default function ScrollList(props) {
   const { listData } = props;
@@ -13,27 +25,25 @@ export default function ScrollList(props) {
         <ListItem
           key={i}
           index={i}
+          urlKey={post.key}
           type={post.type}
           month={post.month}
-          crop={post.crop}
+          crop={post.title}
           variety={post.variety}
           county={post.county}
-          town={post.town}
-          uri={post.uri}
           onItemPress={props.onItemPress}
         />
       );
     });
   } else {
     listContainer.push(
-      <Text style={[{ textAlign: 'center' }, { marginTop: 10 }]} key={0}>沒有資料囉！</Text>
+      <Text style={styles.defaultTxt} key={0}>沒有資料囉！</Text>
     );
   }
   return (
     <ScrollView
-      removeClippedSubviews
       keyscrollEventThrottle={200}
-      automaticallyAdjustContentInsets={false}
+      style={styles.container}
     >
       {listContainer}
     </ScrollView>

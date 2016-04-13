@@ -57,7 +57,13 @@ const styles = StyleSheet.create({
     height: windowSize.height * 0.4,
   },
 });
-
+function formatUrlKey(num, length) {
+  let r = num.toString();
+  while (r.length < length) {
+    r = `0${r}`;
+  }
+  return r;
+}
 function PostDetail(props) {
   return (
     <ScrollView
@@ -65,7 +71,7 @@ function PostDetail(props) {
       keyscrollEventThrottle={200}
       automaticallyAdjustContentInsets={false}
     >
-      <Image source={{ uri: props.uri }} style={ styles.itemImg } />
+      <Image source={{ uri: `http://data.gov.tw/sites/default/files/visual/fruit/${formatUrlKey(props.urlKey, 3)}.jpg` }}style={ styles.itemImg } />
       <Text style={ styles.title }>{props.title}</Text>
       <View style={ styles.container }>
         <Text style={ styles.content }>類型：{props.itemType}</Text>
@@ -79,7 +85,7 @@ function PostDetail(props) {
 
 PostDetail.propTypes = {
   index: React.PropTypes.number,
-  uri: React.PropTypes.string,
+  urlKey: React.PropTypes.string,
   itemType: React.PropTypes.string,
   month: React.PropTypes.array,
   title: React.PropTypes.string,

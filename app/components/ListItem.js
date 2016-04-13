@@ -1,11 +1,13 @@
 import React, {
   StyleSheet,
+  PixelRatio,
   View,
   Text,
   TouchableOpacity,
   Image,
 } from 'react-native';
 
+const PIXEL_RATIO = PixelRatio.get();
 const styles = StyleSheet.create({
   commentContent: {
     marginLeft: 20,
@@ -37,8 +39,8 @@ const styles = StyleSheet.create({
   },
   avatar: {
     borderRadius: 3,
-    width: 120,
-    height: 90,
+    width: 40 * PIXEL_RATIO,
+    height: 30 * PIXEL_RATIO,
     marginRight: 10,
   },
 });
@@ -47,22 +49,29 @@ export default function ListItem(props) {
   function onItemPress() {
     props.onItemPress({
       index: props.index,
+      urlKey: props.urlKey,
       type: props.type,
       month: props.month,
       crop: props.crop,
       variety: props.variety,
       county: props.county,
-      uri: props.uri,
     });
+  }
+  function formatUrlKey(num, length) {
+    let r = num.toString();
+    while (r.length < length) {
+      r = `0${r}`;
+    }
+    return r;
   }
   return (
     <TouchableOpacity underlayColor={"#f3f3f3"} onPress={onItemPress}>
       <View style={styles.commentContent}>
-        <Image source={{ uri: props.uri }} style={ styles.avatar } />
+        <Image source={{ uri: `http://data.gov.tw/sites/default/files/visual/fruit/${formatUrlKey(props.urlKey, 3)}.jpg` }} style={ styles.avatar } />
         <View style={styles.commentBody}>
           <Text style={styles.titles}>{props.crop}</Text>
           <Text style={styles.titles}>{props.variety}</Text>
-          <Text style={styles.titles}>{props.county}</Text>
+          {/*<Text style={styles.titles}>{props.county}</Text>*/}
         </View>
       </View>
     </TouchableOpacity>
@@ -70,8 +79,8 @@ export default function ListItem(props) {
 }
 
 ListItem.propTypes = {
+  urlKey: React.PropTypes.string,
   index: React.PropTypes.number,
-  uri: React.PropTypes.string,
   type: React.PropTypes.string,
   month: React.PropTypes.array,
   crop: React.PropTypes.string,
@@ -81,5 +90,5 @@ ListItem.propTypes = {
 };
 
 ListItem.defaultProps = {
-  uri: 'https://unsplash.it/150/100/?random',
+  onItemPress: null,
 };
