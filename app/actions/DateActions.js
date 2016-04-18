@@ -5,6 +5,7 @@ function receivedToday(today) {
     type: RECEIVED_TODAY,
     month: today.getMonth() + 1,
     date: today.getDate(),
+    weekday: today.getDay(),
   };
 }
 
