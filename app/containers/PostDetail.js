@@ -75,9 +75,9 @@ function PostDetail(props) {
       <Text style={ styles.title }>{props.title}</Text>
       <View style={ styles.container }>
         <Text style={ styles.content }>類型：{props.itemType}</Text>
-        <Text style={ styles.content }>產季：{props.month}</Text>
-        <Text style={ styles.content }>品種：{props.variety}</Text>
-        <Text style={ styles.content }>產地：{props.county}</Text>
+        <Text style={ styles.content }>產期：{props.month.join('、')}月</Text>
+        <Text style={ styles.content }>產地：{props.county.join('、')}</Text>
+        <Text style={ styles.content }>品種：{props.variety.join('、')}</Text>
       </View>
     </ScrollView>
   );

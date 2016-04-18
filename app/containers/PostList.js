@@ -13,16 +13,13 @@ import { Actions } from 'react-native-router-flux';
 const windowSize = Dimensions.get('window');
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: 'rgb(240, 240, 240)',
-    paddingTop: 65,
+    backgroundColor: 'rgb(131, 206, 227)',
+    paddingTop: 64,
     height: windowSize.height,
   },
 });
 
 export default class PostList extends Component {
-  constructor(props) {
-    super(props);
-  }
   // if (listData.length > 0) {
   //   listData.forEach((post, i) => {
   //     listContainer.push(
