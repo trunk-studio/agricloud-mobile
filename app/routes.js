@@ -9,9 +9,11 @@ const Router = connect()(RNRF.Router);
 
 // View
 import TabIcon from './components/TabIcon';
+import About from './containers/About';
+import News from './containers/News';
 import PostDetail from './containers/PostDetail';
 import Dashboard from './containers/Dashboard';
-import Catogory from './containers/Catogory';
+import Category from './containers/Category';
 import PostList from './containers/PostList';
 
 export default function AppRoutes() {
@@ -35,19 +37,19 @@ export default function AppRoutes() {
           </Route>
           <Route name="tabMonth" schema="tab" title="月份導覽" iconName="rocket">
             <Router>
-              <Route name="catogory" component={Catogory} title="月份導覽" />
+              <Route name="category" component={Category} title="月份導覽" />
               <Route name="postList" component={PostList} />
               <Route name="postDetail" component={PostDetail} />
             </Router>
           </Route>
           <Route name="tabNews" schema="tab" title="最新資訊" iconName="newspaper-o">
             <Router>
-              <Route name="dashboard" component={Dashboard} title="最新資訊" />
+              <Route name="news" component={News} title="最新資訊" />
             </Router>
           </Route>
           <Route name="tabAbout" schema="tab" title="關於我們" iconName="user">
             <Router>
-              <Route name="dashboard" component={Dashboard} title="關於我們" />
+              <Route name="about" component={About} title="關於我們" />
             </Router>
           </Route>
         </Router>
