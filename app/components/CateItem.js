@@ -11,43 +11,48 @@ import { Actions } from 'react-native-router-flux';
 const PIXEL_RATIO = PixelRatio.get();
 const styles = StyleSheet.create({
   commentContent: {
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 10,
-    marginBottom: 10,
-    flex: 1,
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 5,
+    marginBottom: 5,
     flexDirection: 'row',
-    alignItems: 'flex-start',
     backgroundColor: 'white',
-    shadowOpacity: 1,
-    shadowColor: 'rgba(147, 147, 147, 0.6)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
+    borderRadius: 10,
+    // shadowOpacity: 1,
+    // shadowColor: 'rgba(147, 147, 147, 0.6)',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+  },
+  titleBar: {
+    flexDirection: 'row',
   },
   titles: {
+    flex: 4,
     fontWeight: '400',
-    fontSize: 20,
-    color: '#333',
-    // letterSpacing: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    fontSize: 18,
+    color: '#064c69',
+    letterSpacing: 1,
+    paddingLeft: 20,
+  },
+  subTitles: {
+    flex: 5,
+    fontSize: 16,
+    marginLeft: 15,
+    color: '#064c69',
   },
   commentBody: {
-    flex: 10,
-    flexDirection: 'column',
+    flex: 1,
     height: 30 * PIXEL_RATIO,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   avatar: {
-    borderRadius: 3,
-    // width: windowSize.width * 0.4,
-    flex: 9,
-    flexDirection: 'column',
-    height: 30 * PIXEL_RATIO,
-    marginRight: 10,
+    width: 50,
+    height: 50,
+    top: 5,
+    marginLeft: 10,
+    borderRadius: 10,
   },
 });
 
@@ -63,9 +68,10 @@ export default function CateItem(props) {
       <View style={styles.commentContent}>
         <Image source={{ uri: props.uri }} style={ styles.avatar } />
         <View style={styles.commentBody}>
-          <Text style={styles.titles}>
-            {props.title}
-          </Text>
+          <View style={styles.titleBar}>
+            <Text style={styles.titles}>{props.title}</Text>
+            <Text style={styles.subTitles}>{props.subTitle}</Text>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -74,11 +80,11 @@ export default function CateItem(props) {
 
 CateItem.propTypes = {
   title: React.PropTypes.string,
+  subTitle: React.PropTypes.string,
   mIndex: React.PropTypes.number,
   uri: React.PropTypes.string,
 };
 
 CateItem.defaultProps = {
-  title: '標題',
   uri: 'https://unsplash.it/300/400/?random',
 };
