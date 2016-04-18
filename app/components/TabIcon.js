@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SearchPostBar(props) {
+export default function TabIcon(props) {
   return (
     <Text
       style={{
@@ -36,12 +36,12 @@ export default function SearchPostBar(props) {
   );
 }
 
-SearchPostBar.propTypes = {
+TabIcon.propTypes = {
   title: React.PropTypes.string,
   iconName: React.PropTypes.string,
   selected: React.PropTypes.bool,
 };
 
-SearchPostBar.defaultProps = {
+TabIcon.defaultProps = {
   selected: false,
 };
