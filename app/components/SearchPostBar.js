@@ -18,6 +18,7 @@ export default function SearchPostBar(props) {
       onChangeText={_onChangeText}
       onSearchButtonPress={_onChangeText}
       onCancelButtonPress={_onChangeText}
+      barTintColor={'rgb(200, 200, 200)'}
     />
   );
 }
