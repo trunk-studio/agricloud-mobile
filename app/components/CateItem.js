@@ -1,6 +1,6 @@
 import React, {
   StyleSheet,
-  PixelRatio,
+  Dimensions,
   View,
   Text,
   TouchableOpacity,
@@ -8,11 +8,24 @@ import React, {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-const PIXEL_RATIO = PixelRatio.get();
+const m1 = require('../images/1.png');
+const m2 = require('../images/2.png');
+const m3 = require('../images/3.png');
+const m4 = require('../images/4.png');
+const m5 = require('../images/5.png');
+const m6 = require('../images/6.png');
+const m7 = require('../images/7.png');
+const m8 = require('../images/8.png');
+const m9 = require('../images/9.png');
+const m10 = require('../images/10.png');
+const m11 = require('../images/11.png');
+const m12 = require('../images/12.png');
+
+const windowSize = Dimensions.get('window');
 const styles = StyleSheet.create({
   commentContent: {
-    marginLeft: 30,
-    marginRight: 30,
+    marginLeft: windowSize.width * 0.1,
+    marginRight: windowSize.width * 0.1,
     marginTop: 5,
     marginBottom: 5,
     flexDirection: 'row',
@@ -44,15 +57,15 @@ const styles = StyleSheet.create({
   },
   commentBody: {
     flex: 1,
-    height: 30 * PIXEL_RATIO,
+    height: 70,
     justifyContent: 'center',
   },
   avatar: {
     width: 50,
     height: 50,
-    top: 5,
     marginLeft: 10,
     borderRadius: 10,
+    alignSelf: 'center',
   },
 });
 
@@ -63,10 +76,38 @@ export default function CateItem(props) {
       title: props.title,
     });
   }
+  function getImage(month) {
+    switch (month) {
+      case 1:
+        return m1;
+      case 2:
+        return m2;
+      case 3:
+        return m3;
+      case 4:
+        return m4;
+      case 5:
+        return m5;
+      case 6:
+        return m6;
+      case 7:
+        return m7;
+      case 8:
+        return m8;
+      case 9:
+        return m9;
+      case 10:
+        return m10;
+      case 11:
+        return m11;
+      default:
+        return m12;
+    }
+  }
   return (
     <TouchableOpacity underlayColor={"#f3f3f3"} onPress={pressHandle}>
       <View style={styles.commentContent}>
-        <Image source={{ uri: props.uri }} style={ styles.avatar } />
+        <Image source={getImage(props.mIndex)} style={ styles.avatar } />
         <View style={styles.commentBody}>
           <View style={styles.titleBar}>
             <Text style={styles.titles}>{props.title}</Text>
@@ -86,5 +127,4 @@ CateItem.propTypes = {
 };
 
 CateItem.defaultProps = {
-  uri: 'https://unsplash.it/300/400/?random',
 };
