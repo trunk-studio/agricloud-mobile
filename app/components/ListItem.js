@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginBottom: 3,
     padding: 15,
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
     backgroundColor: 'white',
@@ -28,14 +27,15 @@ const styles = StyleSheet.create({
   },
   titles: {
     fontWeight: '400',
-    fontSize: 16,
+    fontSize: 26,
     color: '#333',
-    lineHeight: 22,
+    textAlign: 'center',
   },
   commentBody: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
+    height: 30 * PIXEL_RATIO,
   },
   avatar: {
     borderRadius: 3,
@@ -70,8 +70,6 @@ export default function ListItem(props) {
         <Image source={{ uri: `http://data.gov.tw/sites/default/files/visual/fruit/${formatUrlKey(props.urlKey, 3)}.jpg` }} style={ styles.avatar } />
         <View style={styles.commentBody}>
           <Text style={styles.titles}>{props.crop}</Text>
-          <Text style={styles.titles}>{props.variety}</Text>
-          {/*<Text style={styles.titles}>{props.county}</Text>*/}
         </View>
       </View>
     </TouchableOpacity>
