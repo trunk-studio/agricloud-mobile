@@ -8,18 +8,18 @@ import React, {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-const m1 = require('../images/1.png');
-const m2 = require('../images/2.png');
-const m3 = require('../images/3.png');
-const m4 = require('../images/4.png');
-const m5 = require('../images/5.png');
-const m6 = require('../images/6.png');
-const m7 = require('../images/7.png');
-const m8 = require('../images/8.png');
-const m9 = require('../images/9.png');
-const m10 = require('../images/10.png');
-const m11 = require('../images/11.png');
-const m12 = require('../images/12.png');
+const m1 = require('../images/month/1.png');
+const m2 = require('../images/month/2.png');
+const m3 = require('../images/month/3.png');
+const m4 = require('../images/month/4.png');
+const m5 = require('../images/month/5.png');
+const m6 = require('../images/month/6.png');
+const m7 = require('../images/month/7.png');
+const m8 = require('../images/month/8.png');
+const m9 = require('../images/month/9.png');
+const m10 = require('../images/month/10.png');
+const m11 = require('../images/month/11.png');
+const m12 = require('../images/month/12.png');
 
 const windowSize = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: 10,
+    borderColor: '#064c69',
+    borderWidth: 1,
     // shadowOpacity: 1,
     // shadowColor: 'rgba(147, 147, 147, 0.6)',
     // shadowOffset: {
