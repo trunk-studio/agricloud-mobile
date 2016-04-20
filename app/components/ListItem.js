@@ -1,46 +1,52 @@
 import React, {
   StyleSheet,
   PixelRatio,
+  Dimensions,
   View,
   Text,
   TouchableOpacity,
   Image,
 } from 'react-native';
 
+const windowSize = Dimensions.get('window');
 const PIXEL_RATIO = PixelRatio.get();
 const styles = StyleSheet.create({
   commentContent: {
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 3,
-    marginBottom: 3,
-    padding: 15,
+    marginLeft: windowSize.width * 0.12,
+    marginRight: windowSize.width * 0.12,
+    marginTop: 5,
+    marginBottom: 5,
+    paddingLeft: windowSize.width * 0.1,
+    paddingRight: windowSize.width * 0.1,
     flexDirection: 'row',
     alignItems: 'flex-start',
     backgroundColor: 'white',
-    shadowOpacity: 1,
-    shadowColor: 'rgba(147, 147, 147, 0.6)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
+    borderRadius: 10,
+    borderColor: '#064c69',
+    borderWidth: 1,
+    // shadowOpacity: 1,
+    // shadowColor: 'rgba(147, 147, 147, 0.6)',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
   },
   titles: {
     fontWeight: '400',
-    fontSize: 26,
-    color: '#333',
+    fontSize: 17,
+    color: '#359ac0',
     textAlign: 'center',
   },
   commentBody: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    height: 30 * PIXEL_RATIO,
+    alignSelf: 'center',
   },
   avatar: {
     borderRadius: 3,
     width: 40 * PIXEL_RATIO,
-    height: 30 * PIXEL_RATIO,
+    height: 25 * PIXEL_RATIO,
     marginRight: 10,
   },
 });
