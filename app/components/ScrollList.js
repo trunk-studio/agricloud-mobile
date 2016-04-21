@@ -21,19 +21,22 @@ export default function ScrollList(props) {
   const listContainer = [];
   if (listData.length > 0) {
     listData.forEach((post, i) => {
-      listContainer.push(
-        <ListItem
-          key={i}
-          index={i}
-          urlKey={post.key}
-          type={post.type}
-          month={post.month}
-          crop={post.title}
-          variety={post.variety}
-          county={post.county}
-          onItemPress={props.onItemPress}
-        />
-      );
+      if (props.tabIndex === 0 && post.type === '蔬菜'
+        || props.tabIndex === 1 && post.type === '水果') {
+        listContainer.push(
+          <ListItem
+            key={i}
+            index={i}
+            urlKey={post.key}
+            type={post.type}
+            month={post.month}
+            crop={post.title}
+            variety={post.variety}
+            county={post.county}
+            onItemPress={props.onItemPress}
+          />
+        );
+      }
     });
   } else {
     listContainer.push(
@@ -43,6 +46,7 @@ export default function ScrollList(props) {
   return (
     <ScrollView
       keyscrollEventThrottle={200}
+      backgroundColor={props.backgroundColor}
       style={styles.container}
     >
       {listContainer}
@@ -53,6 +57,8 @@ export default function ScrollList(props) {
 ScrollList.propTypes = {
   listData: React.PropTypes.array,
   onItemPress: React.PropTypes.func,
+  tabIndex: React.PropTypes.number,
+  backgroundColor: React.PropTypes.string,
 };
 
 ScrollList.defaultProps = {
