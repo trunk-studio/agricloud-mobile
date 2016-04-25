@@ -1,12 +1,10 @@
 import React, {
   StyleSheet,
-  PixelRatio,
   View,
   Text,
   Image,
 } from 'react-native';
 
-const PIXEL_RATIO = PixelRatio.get();
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -98,8 +96,11 @@ export default function InfoBar(props) {
         <Text style={styles.locationArea}>{props.locationName}</Text>
       </View>
       <View style={styles.weatherFrame}>
-        <Text style={styles.degreeTxt}>{Math.round(props.temp)}
-          <Text style={styles.degreeSign}>℃</Text>
+        <Text style={styles.degreeTxt}>
+          {props.temp !== undefined ? Math.round(props.temp) : ''}
+          <Text style={styles.degreeSign}>
+          {props.temp !== undefined ? '℃' : ''}
+          </Text>
         </Text>
         <View style={styles.stateArea}>
           <Image style={styles.weatherIcon} source={{ uri: `http://openweathermap.org/img/w/${props.iconId}.png` }} />
