@@ -38,10 +38,6 @@ export default function ScrollList(props) {
         );
       }
     });
-  } else {
-    listContainer.push(
-      <Text style={styles.defaultTxt} key={0}>沒有資料囉！</Text>
-    );
   }
   return (
     <ScrollView
@@ -49,7 +45,7 @@ export default function ScrollList(props) {
       backgroundColor={props.backgroundColor}
       style={styles.container}
     >
-      {listContainer}
+      {listContainer.length > 0 ? listContainer : <Text style={styles.defaultTxt}>沒有資料囉！</Text>}
     </ScrollView>
   );
 }
