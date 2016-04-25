@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     paddingLeft: 27,
     paddingRight: 27,
     paddingTop: 10,
-    paddingBottom: 10,
     lineHeight: 30,
+    textAlign: 'center',
   },
   container: {
     marginLeft: 25,

@@ -9,16 +9,16 @@ import React, {
 const windowSize = Dimensions.get('window');
 const styles = StyleSheet.create({
   cover: {
-    backgroundColor: 'rgb(240, 240, 240)',
-    width: windowSize.width,
     position: 'absolute',
-    left: 0,
+    width: windowSize.width,
     opacity: 0.9,
   },
   text: {
+    position: 'absolute',
+    width: windowSize.width,
     fontSize: 34,
     textAlign: 'center',
-    color: '#eee',
+    color: '#fff',
     letterSpacing: 1,
     fontWeight: '600',
     textShadowColor: '#444',
@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
 
 export default function CoverCard(props) {
   return (
-    <View>
-      <Image source={{ uri: props.uri }}
-        style={[styles.cover, { height: props.height, top: props.top }]}
+    <View style={{ height: props.height }}>
+      <Image source={props.img}
+        style={[styles.cover, { height: props.height }]}
       />
       <Text style={[styles.text,
-        { height: props.height + 20, paddingTop: props.height / 2 + props.txtTop }]}
+        { height: props.height, paddingTop: props.height / 2 + props.txtTop }]}
       >
         {props.title}
       </Text>
@@ -47,13 +47,11 @@ CoverCard.propTypes = {
   top: React.PropTypes.number,
   txtTop: React.PropTypes.number,
   height: React.PropTypes.number,
-  uri: React.PropTypes.string,
+  img: React.PropTypes.number,
 };
 
 CoverCard.defaultProps = {
   title: '',
-  top: 0,
-  txtTop: 0,
+  txtTop: -20,
   height: 200,
-  uri: 'https://unsplash.it/400/400/?random',
 };
