@@ -11,6 +11,7 @@ const Router = connect()(RNRF.Router);
 import TabIcon from './components/TabIcon';
 import About from './containers/About';
 import News from './containers/News';
+import NewsDetail from './containers/NewsDetail';
 import PostDetail from './containers/PostDetail';
 import Dashboard from './containers/Dashboard';
 import Category from './containers/Category';
@@ -30,12 +31,13 @@ export default function AppRoutes() {
             backgroundColor: 'white',
           }}
         >
-          <Route name="tabDashboard" hideNavBar schema="tab" title="首頁" iconName="home" initial>
+          <Route name="tabDashboard" schema="tab" title="首頁" iconName="home">
             <Router>
-              <Route name="dashboard" component={Dashboard} title="Dashboard" />
+              <Route name="dashboard" hideNavBar component={Dashboard} title="首頁" initial />
+              <Route name="newsDetail" hideNavBar={0} component={NewsDetail} title="活動資訊" />
             </Router>
           </Route>
-          <Route name="tabMonth" schema="tab" title="月份導覽" iconName="rocket">
+          <Route name="tabMonth" schema="tab" title="月份導覽" iconName="calendar">
             <Router>
               <Route name="category" component={Category} title="月份導覽" />
               <Route name="postList" component={PostList} />
@@ -45,6 +47,7 @@ export default function AppRoutes() {
           <Route name="tabNews" schema="tab" title="最新資訊" iconName="newspaper-o">
             <Router>
               <Route name="news" component={News} title="最新資訊" />
+              <Route name="newsDetail" component={NewsDetail} title="活動資訊" />
             </Router>
           </Route>
           <Route name="tabAbout" schema="tab" title="關於我們" iconName="user">

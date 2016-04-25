@@ -1,4 +1,12 @@
+export const RECEIVED_SEARCH_NEWS = 'RECEIVED_SEARCH_NEWS';
 export const RECEIVED_SEARCH_POST = 'RECEIVED_SEARCH_POST';
+
+function receivedSearchNews(newsList) {
+  return {
+    type: RECEIVED_SEARCH_NEWS,
+    data: newsList,
+  };
+}
 
 function receivedSearchPost(postList) {
   return {
@@ -8,10 +16,19 @@ function receivedSearchPost(postList) {
 }
 
 export async function requestNews() {
-  const searchApi = 'http://data.coa.gov.tw/Service/RedirectService.aspx?UnitId=061&url=http%3a%2f%2fdata.coa.gov.tw%2fService%2fOpenData%2fDataFileService.aspx%3fUnitId%3d061';
-  const postList = await fetch(searchApi).then(response => response.json());
+  const newsList = [{ title: '天天五蔬果營養課程活動', content: '宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+    { title: '天天五蔬果營養課程活動', content: '宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+    { title: '好康大放送！食安守門站運動焦點活動', content: '農委會致力打造安全、安心的農產品供應鏈，宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+    { title: '天天五蔬果營養課程活動', content: '宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+    { title: '好康大放送！食安守門站運動焦點活動', content: '農委會致力打造安全、安心的農產品供應鏈，宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+    { title: '天天五蔬果營養課程活動', content: '宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+    { title: '好康大放送！食安守門站運動焦點活動', content: '農委會致力打造安全、安心的農產品供應鏈，宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+    { title: '天天五蔬果營養課程活動', content: '宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+    { title: '好康大放送！食安守門站運動焦點活動', content: '農委會致力打造安全、安心的農產品供應鏈，宣導健康飲食原則養成天天攝取五蔬果的習慣' },
+  ];
+
   return (dispatch) => {
-    dispatch(receivedSearchPost(postList));
+    dispatch(receivedSearchNews(newsList));
   };
 }
 

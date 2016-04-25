@@ -2,27 +2,18 @@ import React, {
   StyleSheet,
   Text,
   View,
+  ScrollView,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import NewsItem from './NewsItem';
 
 const styles = StyleSheet.create({
-  newsItem: {
-    flexDirection: 'row',
-    borderBottomColor: '#333',
-    borderBottomWidth: 1,
+  container: {
+    flex: 1,
   },
-  newsConent: {
-    flex: 8,
-  },
-  newsIcon: {
-    flex: 2,
-    flexDirection: 'column',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-  icon: {
-    fontSize: 40,
-    color: '#359ac0',
+  defaultTxt: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 20,
   },
   boardBar: {
     color: 'white',
@@ -33,56 +24,48 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  newsTitle: {
-    fontSize: 19,
-    fontWeight: '500',
-    lineHeight: 25,
-    color: '#333',
-    marginTop: 10,
-    marginBottom: 5,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  newsInfo: {
-    fontSize: 15,
-    lineHeight: 20,
-    color: '#555',
-    marginBottom: 15,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
 });
 
 export default function NewsBoard(props) {
+  const { listData, itemCount } = props;
+  const listContainer = [];
+  if (listData.length > 0) {
+    listData.forEach((news, i) => {
+      if (itemCount === 0 || i < itemCount) {
+        listContainer.push(
+          <NewsItem
+            key={i}
+            index={i}
+            title={news.title}
+            content={news.content}
+            onItemPress={props.onItemPress}
+          />
+        );
+      }
+    });
+  }
   return (
-    <View>
+    <View style={{ flex: 1, flexDirection: 'column' }}>
       <Text style={styles.boardBar}>{props.boardTitle}</Text>
-      <View style={styles.newsItem}>
-        <View style={styles.newsConent}>
-          <Text style={styles.newsTitle}>天天五蔬果營養課程活動</Text>
-          <Text style={styles.newsInfo}>宣導健康飲食原則養成天天攝取五蔬果的習慣</Text>
-        </View>
-        <View style={styles.newsIcon}>
-          <Icon name={'angle-right'} style={ styles.icon } />
-        </View>
-      </View>
-      <View style={styles.newsItem}>
-        <View style={styles.newsConent}>
-          <Text style={styles.newsTitle}>好康大放送！食安守門站運動焦點活動</Text>
-          <Text style={styles.newsInfo}>農委會致力打造安全、安心的農產品供應鏈</Text>
-        </View>
-        <View style={styles.newsIcon}>
-          <Icon name={'angle-right'} style={ styles.icon } />
-        </View>
-      </View>
+      <ScrollView
+        keyscrollEventThrottle={200}
+        style={styles.container}
+      >
+        {listContainer.length > 0 ? listContainer : <Text style={styles.defaultTxt}>沒有資料囉！</Text>}
+      </ScrollView>
     </View>
   );
 }
 
 NewsBoard.propTypes = {
+  itemCount: React.PropTypes.number,
+  listData: React.PropTypes.array,
+  onItemPress: React.PropTypes.func,
   boardTitle: React.PropTypes.string,
 };
 
 NewsBoard.defaultProps = {
+  listData: [],
+  itemCount: 0,
   boardTitle: '',
 };
